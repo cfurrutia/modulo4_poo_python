@@ -8,13 +8,23 @@ class Pizza:
     # Método para validar un elemento en una lista de casos posibles
     @staticmethod
     def validar_elemento(elemento, valores_posibles):
+        """Método para validar un elemento en una lista de casos posibles
+
+        Args:
+            elemento (any): Elemento a validar
+            valores_posibles (lista): Lista de valores posibles
+
+        Returns:
+            bool : True si el elemento es válido, False en caso contrario
+        """
         if elemento in valores_posibles:
             return True
         else:
             return False
-
-    # Método para realizar un pedido
+        
     def realizar_pedido(self):
+        """Método para realizar un pedido
+        """
         self.ingrediente_proteico = input("Ingrese el ingrediente proteico: ")
         self.primer_ingrediente_vegetal = input("Ingrese el primer ingrediente vegetal: ")
         self.segundo_ingrediente_vegetal = input("Ingrese el segundo ingrediente vegetal: ")
