@@ -24,18 +24,17 @@ class Pizza:
         self.tipo_masa = input("Ingrese el tipo de masa : ")
             
         #  Verificar si el pedido es válido
-        if self.validar_elemento(self.ingrediente_proteico, self.ingredientes_proteicos) and \
-            self.validar_elemento(self.ingrediente_vegetal1, self.ingredientes_vegetales) and \
-            self.validar_elemento(self.ingrediente_vegetal2, self.ingredientes_vegetales) and \
-            self.validar_elemento(self.tipo_masa, self.tipos_masa):
-            self.es_valida = True
-        else:
-            self.es_valida = False
+        self.es_valida = self.validar_elemento(self.ingrediente_proteico, self.ingredientes_proteicos) and \
+        self.validar_elemento(self.ingrediente_vegetal1, self.ingredientes_vegetales) and \
+        self.validar_elemento(self.ingrediente_vegetal2, self.ingredientes_vegetales) and \
+        self.validar_elemento(self.tipo_masa, self.tipos_masa)
         
+    
 # prueba de pedidos   ( __init__, metodo especial,constructor de una clase)
     def __init__(self):
         self.ingrediente_proteico = None
         self.ingrediente_vegetal1 = None
         self.ingrediente_vegetal2 = None
         self.tipo_masa = None
-        self.es_valida = False          
+        self.es_valida = False         
+   

@@ -2,8 +2,8 @@ from pizza import Pizza
 import os
 os.system("cls" if os.name == "nt" else "clear") # limpiar la pantalla del terminal
 
-# ingredientes posibles
-print("Por favor, elige los ingredientes para tu pizza \n") # mensaje para ver el menú
+# Menu ingredientes posibles
+print("Por favor, elige los ingredientes para tu pizza \n") 
 print("Ingredientes proteicos posibles:", Pizza.ingredientes_proteicos)
 print("Ingredientes vegetales posibles:", Pizza.ingredientes_vegetales)
 print("Tipos de masa posibles:", Pizza.tipos_masa)
