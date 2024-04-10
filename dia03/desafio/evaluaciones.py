@@ -22,4 +22,8 @@ print("Tipo de masa:", pizza.tipo_masa)
 
 # Verificar si el pedido es válido
 print("¿Es una pizza válida? \n","si" if pizza.es_pizza_valida else "no")
-print("¿Es la clase Pizza una pizza válida? \n", "si" if hasattr(Pizza, 'si') else "no")
+# Verificar si la clase Pizza es una pizza válida
+try:
+    print("¿Es la clase Pizza una pizza válida? \n", "si" if Pizza.es_pizza_valida else "no")
+except AttributeError:  # captura y maneja la excepción AttributeError
+    print("¿Es la clase Pizza una pizza válida? \n", "no")
