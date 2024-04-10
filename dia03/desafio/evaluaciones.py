@@ -7,7 +7,8 @@ print("Por favor, elige los ingredientes para tu pizza \n")
 print("Ingredientes proteicos posibles:", Pizza.ingredientes_proteicos)
 print("Ingredientes vegetales posibles:", Pizza.ingredientes_vegetales)
 print("Tipos de masa posibles:", Pizza.tipos_masa)
-
+# validacion de entrada de salsa de tomate
+print("¿Salsa de tomate está presente en la lista? \n", Pizza.validar_elemento("salsa de tomate", ["salsa de tomate", "salsa bbq"]))
 # Crear una instancia de la clase Pizza
 pizza = Pizza()
 
