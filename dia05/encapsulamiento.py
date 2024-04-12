@@ -27,3 +27,6 @@ nissan = Auto()
 nissan.imprimir_estado("Negro")
 print("")
 print(nissan.color) # llamado al metodo getter
+
+print(nissan._Auto__color)
+print("")
