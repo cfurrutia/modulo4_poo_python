@@ -13,16 +13,20 @@ class Personaje:
 
     # Definimos un método para asignar experiencia al personaje
     def asignar_estado(self, experiencia):  # Método para actualizar el estado del personaje
-        self.experiencia += experiencia  
-        while self.experiencia >= 100:  
-            self.nivel += 1  
-            self.experiencia -= 100  
-        while self.experiencia < 0:  
-            if self.nivel > 1: 
-                self.nivel -= 1  
-                self.experiencia += 100  
+        
+        suma_temporal = self.experiencia + experiencia
+        while suma_temporal >= 100:
+            self.nivel += 1
+            suma_temporal -= 100
+        if suma_temporal < 0:
+            if self.nivel == 1:
+                print("Juego perdido")
+                suma_temporal = 0
+                return
             else:
-                self.experiencia = 0
+                self.nivel -= 1
+                suma_temporal = 100 + suma_temporal
+        self.experiencia = suma_temporal
 
     # Definimos un método de comparación para "menor que"
     def __lt__(self, other):
