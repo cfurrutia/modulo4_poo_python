@@ -22,6 +22,12 @@ class PelotaDeJuguete(Pelota):
     def __init__(self):
         self.color = "Blanco"    
         
+    def rebotar(self, altura: int):
+        pass
+    
+    def imprimir(self):
+        print("metodo de la subclase")    
+        
 #creacion de objeto
 pelotita = PelotaDeJuguete()
-print(pelotita)
+print(pelotita.rebotar(20))
