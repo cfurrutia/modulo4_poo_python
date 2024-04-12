@@ -1,3 +1,5 @@
+# integrantes Grupo 3 Jimena Traipe, Diego Larena, Carlos Urrutia, Flavia Cayun, Yessenia Millar
+
 #personaje.py
 class Personaje:
     # Definimos el método constructor

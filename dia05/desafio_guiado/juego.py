@@ -1,4 +1,4 @@
-# integrantes Jimena Traipe, Diego Larena, Carlos Urrutia, Flavia Cayun, Yessenia Millar
+# integrantes Grupo 3 Jimena Traipe, Diego Larena, Carlos Urrutia, Flavia Cayun, Yessenia Millar
 
 
 import random #para generar números aleatorios
