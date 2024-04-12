@@ -1,4 +1,6 @@
-#juego.py
+# integrantes Jimena Traipe, Diego Larena, Carlos Urrutia, Flavia Cayun, Yessenia Millar
+
+
 import random #para generar números aleatorios
 from personaje import Personaje#Importamos la clase Personaje del módulo personaje
 
