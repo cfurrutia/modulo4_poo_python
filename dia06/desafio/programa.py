@@ -22,8 +22,8 @@ def ingresar_productos(tienda):
     while True:
         nombre = input("Ingrese el nombre del producto: ")
         precio = float(input("Ingrese el precio del producto: "))
-        stock_input = input("Ingrese el stock del producto (deje vacío para asumir 0): ")
-        stock = int(stock_input) if stock_input else 0
+        stock_entrada = input("Ingrese el stock del producto (deje vacío para asumir 0): ")
+        stock = int(stock_entrada) if stock_entrada else 0 # inicializa con 0 siempre
         producto = Producto(nombre, precio, stock)
         tienda.ingresar_producto(producto)
         ingresar_otro = input("¿Desea ingresar otro producto? (si/no): ")
