@@ -4,10 +4,11 @@
 class Pelota:
     def __init__(self):
         self.color = None
+        self.material = None
 
-    def imprimir(self, ):
+    def rebotar(self, altura):
         pass
 
-    def rebotar(self, ):
+    def imprimir(self, ):
         pass
 

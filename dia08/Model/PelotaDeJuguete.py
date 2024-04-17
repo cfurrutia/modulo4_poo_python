@@ -1,8 +1,12 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-class Material:
+from Pelota import Pelota
 
-    def __init__(self) -> None:
+class PelotaDeJuguete(Pelota):
+    def __init__(self):
         pass
-    
+
+    def imprimir(self, ):
+        pass
+
