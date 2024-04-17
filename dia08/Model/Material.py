@@ -5,3 +5,4 @@ class Material:
     def __init__(self):
         self.nombre = None
         self.duracion = None
+
