@@ -21,6 +21,7 @@ except (LargoExcedidoError, SubTipoInvalidoError) as e:
     if isinstance(e, LargoExcedidoError):
         # Manejar la excepción de LargoExcedidoError y escribir el mensaje en un archivo de registro
         with open('dia13/prueba_modulo4/logs/largo_excedido_error.log', 'a+') as errorlargo:
+
             errorlargo.write(str(e) + '\n')
     elif isinstance(e, SubTipoInvalidoError):
         # Manejar la excepción de SubTipoInvalidoError y escribir el mensaje en un archivo de registro
