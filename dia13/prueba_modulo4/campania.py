@@ -17,7 +17,7 @@ class Campania:
                 duracion = anuncio['duracion']
                 anuncios_creados.append(Video(sub_tipo, duracion))
             elif tipo == 'Display':
-                anuncios_creados.append(Display(1, 1, '', '', sub_tipo))  
+                anuncios_creados.append(Display(sub_tipo))  
             elif tipo == 'Social':
                 anuncios_creados.append(Social(sub_tipo))
         return anuncios_creados

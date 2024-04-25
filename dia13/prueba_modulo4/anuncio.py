@@ -1,58 +1,81 @@
 from abc import ABC, abstractmethod
 from error import SubTipoInvalidoError
+
 class Anuncio(ABC):
-    # Definir atributos de clase FORMATOS y SUB_TIPOS
-    FORMATOS = ()
-    SUB_TIPOS = ()
+
     # Definir el constructor de la clase Anuncio con atributos alto, ancho, url_archivo, url_clic y sub_tipo
     def __init__(self, alto: int, ancho: int, url_archivo: str, url_clic: str, sub_tipo: str):
-        self.__sub_tipo = sub_tipo
-        self.__alto = alto
-        self.__ancho = ancho
-        self.__url_clic = url_clic
+        self.__alto = alto if alto > 0 else 1
+        self.__ancho = ancho if ancho > 0 else 1
         self.__url_archivo = url_archivo
+        self.__url_clic = url_clic
         self.__sub_tipo = sub_tipo
-    # Definir propiedades para acceder a sub_tipo, alto, ancho, url_clic y url_archivo
-    @property
-    def sub_tipo(self):
-        return self.__sub_tipo
-    @sub_tipo.setter
-    def sub_tipo(self, nuevo_sub_tipo):
-        if nuevo_sub_tipo in self.SUB_TIPOS:
-            self.__sub_tipo = nuevo_sub_tipo
-        else:
-            raise SubTipoInvalidoError("El subtipo no es válido.")
+    
     @property
     def alto(self):
         return self.__alto
+    
     @alto.setter
-    def url_clic(self, alto):
-        self.__url_clic = alto
-        
+    def alto(self, alto):
+        self.__alto = alto if alto > 0 else 1
+    
     @property
     def ancho(self):
         return self.__ancho
     
     @ancho.setter
     def ancho(self, ancho):
-        self.ancho = ancho
+        self.__ancho = ancho if ancho > 0 else 1
+    
+    @property
+    def url_archivo(self):
+        return self.__url_archivo
+    
+    @ancho.setter
+    def url_archivo(self, url_archivo):
+        self.__url_archivo = url_archivo   
     
     @property
     def url_clic(self):
         return self.__url_clic
     
     @url_clic.setter
-    def url_clic(self, url_clic):
-        self.__url_clic = url_clic
-
+    def alto(self, url_clic):
+        self.__url_clic = url_clic    
+            
     @property
-    def url_archivo(self):
-        return self.__url_archivo
+    def sub_tipo(self):
+        return self.__sub_tipo
     
-    @url_archivo.setter
-    def url_archivo(self, url_archivo):
-        self.__url_archivo = url_archivo
-
+    @sub_tipo.setter
+    def sub_tipo(self, sub_tipo):
+        """
+        if (isinstance(self,Video)and sub_tipo not in Video.SUB_TIPOS or isinstance(self,Display)and sub_tipo not in Display.SUB_TIPOS or
+            isinstance(self,Social)and sub_tipo not in Social.SUB_TIPOS):
+        """
+        if (sub_tipo in self.SUB_TIPOS):
+            raise SubTipoInvalidoError("El subtipo no es válido.")
+        else:
+            self.__sub_tipo=sub_tipo
+        
+    # Definir un método estático mostrar_formatos para mostrar los formatos y subtipos disponibles
+    @staticmethod
+    def mostrar_formatos():
+        print("Video :")
+        print("===========")
+        for subtipo in Video.SUB_TIPOS:
+            print(f"- {subtipo}")
+        
+        print("Display :")
+        print("===========")
+        for subtipo in Display.SUB_TIPOS:
+            print(f"- {subtipo}")
+    
+        print("Social :")
+        print("===========")
+        for subtipo in Social.SUB_TIPOS:
+            print(f"- {subtipo}")
+            
     # Definir métodos abstractos comprimir_anuncio y redimensionar_anuncio
     @abstractmethod
     def comprimir_anuncio(self):
@@ -62,14 +85,6 @@ class Anuncio(ABC):
     def redimensionar_anuncio(self):
         pass
 
-    # Definir un método estático mostrar_formatos para mostrar los formatos y subtipos disponibles
-    @staticmethod
-    def mostrar_formatos(FORMATOS, SUB_TIPOS):
-        print(f"{FORMATOS}:")
-        print("===========")
-        for subtipo in SUB_TIPOS:
-            print(f"- {subtipo}")
-
 # Definir la clase Video que hereda de Anuncio
 class Video(Anuncio):
     # Definir atributos de clase FORMATOS y SUB_TIPOS específicos para Video
@@ -77,8 +92,10 @@ class Video(Anuncio):
     SUB_TIPOS = ("instream", "outstream")
 
     # Definir el constructor de Video con sub_tipo y duracion
-    def __init__(self, sub_tipo, duracion):
-        super().__init__(1, 1, '', '', sub_tipo) 
+    def __init__(self,url_archivo: str, url_clic: str, sub_tipo: str,duracion: str):
+        super().__init__(1, 1, url_archivo, url_clic, sub_tipo)
+        self.__alto = 1
+        self.__ancho = 1
         self.__duracion = duracion
 
     # Definir propiedades para acceder y modificar la duracion
@@ -87,8 +104,24 @@ class Video(Anuncio):
         return self.__duracion
 
     @duracion.setter
-    def duracion(self, nueva_duracion):
-        self.__duracion = nueva_duracion if nueva_duracion > 0 else 5
+    def duracion(self, duracion):
+        self.__duracion = duracion if duracion > 0 else 5
+
+    @property
+    def alto(self):
+        return self.__alto
+    
+    @alto.setter
+    def alto(self, alto):
+        pass
+    
+    @property
+    def ancho(self):
+        return self.__ancho
+    
+    @ancho.setter
+    def ancho(self, ancho):
+        pass
     
     # Definir métodos comprimir_anuncio y redimensionar_anuncio para Video
     def comprimir_anuncio(self):
@@ -101,8 +134,9 @@ class Video(Anuncio):
 class Display(Anuncio):
     # Definir atributos de clase FORMATOS y SUB_TIPOS específicos para Display
     FORMATOS = ("Display")
-    SUB_TIPOS = ("tradicional", "nativo")
-
+    SUB_TIPOS = ("tradicional", "native")
+    def __init__(self, url_archivo: str, url_clic: str, sub_tipo: str):
+        super().__init__(url_archivo, url_clic, sub_tipo)
     # Definir métodos comprimir_anuncio y redimensionar_anuncio para Display
     def comprimir_anuncio(self):
         print("COMPRESIÓN DE ANUNCIOS DISPLAY NO IMPLEMENTADA AÚN")
@@ -115,7 +149,8 @@ class Social(Anuncio):
     # Definir atributos de clase FORMATOS y SUB_TIPOS específicos para Social
     FORMATOS = ("Social")
     SUB_TIPOS = ("facebook", "linkedin")
-
+    def __init__(self, url_archivo: str, url_clic: str, sub_tipo: str):
+        super().__init__(url_archivo, url_clic, sub_tipo)
     # Definir métodos comprimir_anuncio y redimensionar_anuncio para Social
     def comprimir_anuncio(self):
         print("COMPRESIÓN DE ANUNCIOS DE REDES SOCIALES NO IMPLEMENTADA AÚN")
@@ -125,14 +160,8 @@ class Social(Anuncio):
 
 # Verificar si el script se está ejecutando como el programa principal
 if __name__ == "__main__":
-    
-    # Prueba de Anuncio
-    print("Anuncio:\n")
     # Prueba de Video
-    Video.mostrar_formatos(Video.FORMATOS, Video.SUB_TIPOS)
-    print()
-    # Prueba de Display
-    Display.mostrar_formatos(Display.FORMATOS, Display.SUB_TIPOS)
-    print()
-    # Prueba de Social
-    Social.mostrar_formatos(Social.FORMATOS, Social.SUB_TIPOS)
+    test= Video("","","",0)
+    test.alto = 720
+    print(test.alto)
+    test.sub_tipo = "test subtipo"
