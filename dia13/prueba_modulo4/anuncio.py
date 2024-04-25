@@ -35,7 +35,7 @@ class Anuncio(ABC):
     
     @ancho.setter
     def ancho(self, ancho):
-        self.__url_clic = ancho
+        self.ancho = ancho
     
     @property
     def url_clic(self):
