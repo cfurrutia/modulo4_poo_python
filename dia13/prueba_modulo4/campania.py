@@ -2,11 +2,11 @@ from anuncio import Video, Display, Social
 from error import LargoExcedidoError
 
 class Campania:
-    def __init__(self, nombre, anuncios):
+    def __init__(self, nombre, anuncios, fecha_inicio, fecha_termino):
         self.nombre = nombre
         self.__anuncios = self.crear_anuncios(anuncios)
-        self.__fecha_inicio = None
-        self.__fecha_termino = None
+        self.__fecha_inicio = fecha_inicio
+        self.__fecha_termino = fecha_termino
 
     def crear_anuncios(self, anuncios):
         anuncios_creados = []
@@ -17,7 +17,7 @@ class Campania:
                 duracion = anuncio['duracion']
                 anuncios_creados.append(Video(sub_tipo, duracion))
             elif tipo == 'Display':
-                anuncios_creados.append(Display(sub_tipo))
+                anuncios_creados.append(Display(1, 1, '', '', sub_tipo))  
             elif tipo == 'Social':
                 anuncios_creados.append(Social(sub_tipo))
         return anuncios_creados

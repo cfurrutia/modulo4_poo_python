@@ -1,11 +1,14 @@
 from campania import Campania
 from error import LargoExcedidoError, SubTipoInvalidoError
+import datetime
 
 try:
     # Crear una instancia de Campaña con un anuncio de tipo Video
-    anuncios = [{'tipo': 'Video', 'sub_tipo': 'outstream', 'duracion': 4}]
+    anuncios = [{'tipo': 'Video', 'sub_tipo': 'outstream', 'duracion': 4},{'tipo': 'Display', 'sub_tipo': 'nativo'},{'tipo': 'Display', 'sub_tipo': 'tradicional'}]
     # Crear la instancia de Campania
-    campania = Campania("Campaña de prueba", anuncios)
+    fecha_inicio = datetime.date(2023, 4, 1)
+    fecha_termino = datetime.date(2023, 6, 30)
+    campania = Campania("Campaña de prueba", anuncios, fecha_inicio, fecha_termino)
     # Imprimir la representación de la campaña
     print(campania)
     # Solicitar al usuario que ingrese un nuevo nombre para la campaña
@@ -21,7 +24,6 @@ except (LargoExcedidoError, SubTipoInvalidoError) as e:
     if isinstance(e, LargoExcedidoError):
         # Manejar la excepción de LargoExcedidoError y escribir el mensaje en un archivo de registro
         with open('dia13/prueba_modulo4/logs/largo_excedido_error.log', 'a+') as errorlargo:
-
             errorlargo.write(str(e) + '\n')
     elif isinstance(e, SubTipoInvalidoError):
         # Manejar la excepción de SubTipoInvalidoError y escribir el mensaje en un archivo de registro
