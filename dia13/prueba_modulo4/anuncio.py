@@ -118,16 +118,11 @@ if __name__ == "__main__":
     
     # Prueba de Anuncio
     print("Anuncio:\n")
-
     # Prueba de Video
     Video.mostrar_formatos(Video.FORMATOS, Video.SUB_TIPOS)
     print()
-    
-
     # Prueba de Display
     Display.mostrar_formatos(Display.FORMATOS, Display.SUB_TIPOS)
     print()
-    
-
     # Prueba de Social
     Social.mostrar_formatos(Social.FORMATOS, Social.SUB_TIPOS)
