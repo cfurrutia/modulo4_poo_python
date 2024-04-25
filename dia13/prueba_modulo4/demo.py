@@ -6,8 +6,8 @@ try:
     # Crear una instancia de Campaña con un anuncio de tipo Video
     anuncios = [{'tipo': 'Video', 'sub_tipo': 'outstream', 'duracion': 4},{'tipo': 'Display', 'sub_tipo': 'nativo'},{'tipo': 'Display', 'sub_tipo': 'tradicional'}]
     # Crear la instancia de Campania
-    fecha_inicio = datetime.date(2023, 4, 1)
-    fecha_termino = datetime.date(2023, 6, 30)
+    fecha_inicio = datetime.date(2024, 4, 1)
+    fecha_termino = datetime.date(2024, 6, 30)
     campania = Campania("Campaña de prueba", anuncios, fecha_inicio, fecha_termino)
     # Imprimir la representación de la campaña
     print(campania)
