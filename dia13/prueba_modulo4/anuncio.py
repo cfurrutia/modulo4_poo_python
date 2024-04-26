@@ -67,6 +67,7 @@ class Anuncio(ABC):
         pass
 
 class Video(Anuncio):
+    FORMATOS = "Video"
     SUB_TIPOS = ("instream", "outstream")
 
     def __init__(self, url_archivo: str, url_clic: str, sub_tipo: str, duracion: int):
@@ -106,6 +107,7 @@ class Video(Anuncio):
         print("RECORTE DE VIDEO NO IMPLEMENTADO AÚN")
 
 class Display(Anuncio):
+    FORMATOS = "Display"
     SUB_TIPOS = ("tradicional", "native")
 
     def comprimir_anuncio(self):
@@ -115,6 +117,7 @@ class Display(Anuncio):
         print("REDIMENSIONAMIENTO DE ANUNCIOS DISPLAY NO IMPLEMENTADO AÚN")
 
 class Social(Anuncio):
+    FORMATOS = "Social"
     SUB_TIPOS = ("facebook", "linkedin")
 
     def comprimir_anuncio(self):
@@ -122,3 +125,15 @@ class Social(Anuncio):
 
     def redimensionar_anuncio(self):
         print("REDIMENSIONAMIENTO DE ANUNCIOS DE REDES SOCIALES NO IMPLEMENTADO AÚN")
+        
+if __name__ == "__main__":
+    
+    # Prueba de Anuncio
+    print("Anuncio:\n")
+    # Prueba de Video
+    Video.mostrar_formatos(Video.FORMATOS, Video.SUB_TIPOS)
+    print()
+    
+    test=Video("","","",3)
+    test.alto=720
+    print(test.alto)
