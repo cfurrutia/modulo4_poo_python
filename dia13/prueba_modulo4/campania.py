@@ -2,64 +2,49 @@ from anuncio import Video, Display, Social
 from error import LargoExcedidoError
 
 class Campania:
-    def __init__(self, nombre, anuncios):
-        self.nombre = nombre
-        self.__anuncios = self.crear_anuncios(anuncios)
-        self.__fecha_inicio = None
-        self.__fecha_termino = None
+    
+    def __init__(self, nombre: str, anuncios, fecha_inicio, fecha_termino):
+        self._nombre = nombre
+        # Transformar la lista de anuncios en un diccionario
+        self.__anuncios = {i: self.crear_anuncio(anuncio) for i, anuncio in enumerate(anuncios)}
+        self.__fecha_inicio = fecha_inicio
+        self.__fecha_termino = fecha_termino
 
-    def crear_anuncios(self, anuncios):
-        anuncios_creados = []
-        for anuncio in anuncios:
-            tipo = anuncio['tipo']
-            sub_tipo = anuncio['sub_tipo']
-            if tipo == 'Video':
-                duracion = anuncio['duracion']
-                anuncios_creados.append(Video(sub_tipo, duracion))
-            elif tipo == 'Display':
-                anuncios_creados.append(Display(sub_tipo))
-            elif tipo == 'Social':
-                anuncios_creados.append(Social(sub_tipo))
-        return anuncios_creados
+    def crear_anuncio(self, anuncio):
+        tipo = anuncio['tipo']
+        sub_tipo = anuncio['sub_tipo']
+        if tipo == 'Video':
+            duracion = anuncio['duracion']
+            return Video("", "", sub_tipo, duracion)  # Los primeros dos argumentos son URL de archivo y URL de clic
+        elif tipo == 'Display':
+            return Display(1, 1, "", "", sub_tipo)  # Se agregan valores predeterminados para url_archivo y url_clic
+        elif tipo == 'Social':
+            return Social(sub_tipo)
 
     @property
     def nombre(self):
-        return self.__nombre
+        return self._nombre
 
     @nombre.setter
-    def nombre(self, nuevo_nombre):
-        if len(nuevo_nombre) <= 250:
-            self.__nombre = nuevo_nombre
+    def nombre(self, nombre):
+        if len(nombre) <= 250:
+            self._nombre = nombre
         else:
-            raise LargoExcedidoError("El nombre de la campaña no puede superar los 250 caracteres.\n")
-
-    @property
-    def fecha_inicio(self):
-        return self.__fecha_inicio
-
-    @fecha_inicio.setter
-    def fecha_inicio(self, nueva_fecha_inicio):
-        self.__fecha_inicio = nueva_fecha_inicio
-
-    @property
-    def fecha_termino(self):
-        return self.__fecha_termino
-
-    @fecha_termino.setter
-    def fecha_termino(self, nueva_fecha_termino):
-        self.__fecha_termino = nueva_fecha_termino
+            raise LargoExcedidoError("El nombre de la campaña excede el límite de 250 caracteres.")
 
     @property
     def anuncios(self):
         return self.__anuncios
 
     def __str__(self):
-        contadores = {'Video': 0, 'Display': 0, 'Social': 0}
-        for anuncio in self.__anuncios:
-            tipo = type(anuncio).__name__
-            contadores[tipo] += 1
+        tipo_contador = {'Video': 0, 'Display': 0, 'Social': 0}
+        for anuncio in self.anuncios.values():  # Iterar sobre los valores del diccionario de anuncios
+            if isinstance(anuncio, Video):
+                tipo_contador['Video'] += 1
+            elif isinstance(anuncio, Display):
+                tipo_contador['Display'] += 1
+            elif isinstance(anuncio, Social):
+                tipo_contador['Social'] += 1
 
-        resultado = f"Nombre de la campaña: {self.nombre}\nAnuncios: "
-        for tipo, cantidad in contadores.items():
-            resultado += f"{cantidad} {tipo}, "
-        return resultado[:-2]
+        return f"Nombre de la campaña: {self.nombre}\n" \
+                f"Anuncios: {tipo_contador['Video']} Video, {tipo_contador['Display']} Display, {tipo_contador['Social']} Social"
